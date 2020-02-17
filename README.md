@@ -34,7 +34,7 @@ _See the `browser/index.html` file for a demonstration of the topics below. You 
 
 ### Include the JavaScript library bundle in your page `<head>`
 
-`<script src="https://monicanagent.github.io/websocketsessions/bundle.js" type="text/javascript" language="javascript"></script>`
+`<script src="https://monicanagent.github.io/websocketsessions/browser/bundle.js" type="text/javascript" language="javascript"></script>`
 
 ### Connect to WSS Server (Standard Connection)
 
