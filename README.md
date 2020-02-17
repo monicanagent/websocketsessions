@@ -88,6 +88,9 @@ function onPeerDisconnect(event) {
    var disconnectedPID = jsonRPC.result.disconnect;
    console.log ("A peer has disconnected: " + disconnectedPID);
 }
+
+client.addEventListener("peerconnect", onPeerConnect);
+client.addEventListener("peerdisconnect", onPeerDisconnect);
 ```
 #### Receiving Messages
 ```
@@ -96,9 +99,6 @@ function onReceiveMessage(event) {
    console.log("Message received (from PID: "+ jsonRPC.result.from +"): "+jsonRPC.result.data);
 }
 
-
-client.addEventListener("peerconnect", onPeerConnect);
-client.addEventListener("peerdisconnect", onPeerDisconnect);
 client.addEventListener("message", onReceiveMessage);
 
 ```
@@ -115,15 +115,21 @@ function sendToEveryone(message) {
 }
 ```
 
-#### Disconnecting
+#### Disconnecting From Server
 
 
 ```
 client.disconnect();
 ```
 
+#### Detecting Server Disconnection
+
+
+_To Complete_
+
 #### To Do
 
+- Add code and complete "Detecting Server Disconnection" section
 - Include instructions on establishing connections via a [Services Descriptor Bundle](https://github.com/monicanagent/sdb).
 - Minimize client library bundle.
 - Add project to npm for easier installation (e.g. `npm i websocketsessions`)
