@@ -72,8 +72,9 @@ client.connect().then(success => {
 ```
 
 ### Peer-to-Peer Functionality
+_Note that "PID" values are peer "Private IDs" assigned to each peer when connected and used when sending private / direct communications. Broadcasts messages don't use PIDs._
 
-#### Receiving Messages
+#### Detecting Peer Connections & Disconnections
 
 ```
 function onPeerConnect(event) {
@@ -87,7 +88,9 @@ function onPeerDisconnect(event) {
    var disconnectedPID = jsonRPC.result.disconnect;
    console.log ("A peer has disconnected: " + disconnectedPID);
 }
-
+```
+#### Receiving Messages
+```
 function onReceiveMessage(event) {
    var jsonRPC = event.data;
    console.log("Message received (from PID: "+ jsonRPC.result.from +"): "+jsonRPC.result.data);
@@ -104,11 +107,11 @@ client.addEventListener("message", onReceiveMessage);
 
 ```
 function sendToPrivateID(recipientPID, message) {
-   client.send (message, [recipientPID]); //array can include multiple recipient PIDs
+   client.send (message, [recipientPID]); //array can include multiple recipient PIDs or just one
 }
 
 function sendToEveryone(message) {
-   client.broadcast (message);
+   client.broadcast (message); //note no PIDs (broadcast to every connected peer)
 }
 ```
 
