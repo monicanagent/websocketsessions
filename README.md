@@ -32,7 +32,7 @@ A Node.js server and accompanying [ECMAScript 2017](https://www.ecma-internation
 
 _See the `browser/index.html` file for a demonstration of the topics below. You can load this file directly from the file system (no web server is required)._
 
-### Include the JavaScript library bundle in your page `<head>`:
+### Include the JavaScript library bundle in your page `<head>`
 
 `<script src="https://monicanagent.github.io/websocketsessions/bundle.js" type="text/javascript" language="javascript"></script>`
 
