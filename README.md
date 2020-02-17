@@ -72,7 +72,7 @@ client.connect().then(success => {
 ```
 
 ### Peer-to-Peer Functionality
-_Note that "PID" values are peer "Private IDs" assigned to each peer when connected and used when sending private / direct communications. Broadcasts messages don't use PIDs._
+_Note that "PID" values are peer "Private IDs" assigned to each peer when connected and used when sending private / direct communications. Broadcast messages don't use PIDs._
 
 #### Detecting Peer Connections & Disconnections
 
