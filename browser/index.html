@@ -1,0 +1,94 @@
+<html lang="en">
+   <head>
+      <!-- Meta definitions -->
+      <meta charset="UTF-8" />
+      <meta name="application-name" content="WebSocket Sessions demo" />
+      <meta name="description" content="A demonstration of some WSS capabilities." />
+      <meta name="author" content="Patrick Bay (Monican Agent)" />
+      <meta name="keywords" content="api, server, tunnel, websocket, peer-to-peer, p2p, javascript" />
+
+      <script src="bundle.js" type="text/javascript" language="javascript"></script>
+
+      <script type="text/javascript" language="javascript">
+
+         var client = null; //created below
+
+         function startDemo() {
+            console.log ("Starting WebSocket Sessions demo.");
+            client = new WSSClient("ws://localhost:8090");
+            client.connect().then(success => {
+               console.log ("Successfully connected to WSS server @ " + client.handshakeServerAddr);
+               console.log ("My user token: " + client.userToken);
+               console.log ("My server token: " + client.serverToken);
+               console.log ("My private ID: " + client.privateID);
+               console.log ("Currently connected peers: " + client.peers);
+               client.addEventListener("peerconnect", onPeerConnect);
+               client.addEventListener("peerdisconnect", onPeerDisconnect);
+               client.addEventListener("message", onReceiveMessage);
+               populateUI();
+               alert ("Connected to WebSocket Sessions server.");
+            })
+         }
+
+         function onPeerConnect(event) {
+            var jsonRPC = event.data;
+            var connectedPID = jsonRPC.result.connect;
+            console.log ("A peer has connected: " + connectedPID);
+            populateUI();
+         }
+
+         function onPeerDisconnect(event) {
+            var jsonRPC = event.data;
+            var disconnectedPID = jsonRPC.result.disconnect;
+            console.log ("A peer has disconnected: " + disconnectedPID);
+            populateUI();
+         }
+
+         function onReceiveMessage(event) {
+            var jsonRPC = event.data;
+            console.log(jsonRPC.result.data);
+            document.querySelector("#incomingMessages").value += jsonRPC.result.data +"\n";
+         }
+
+         function sendMessage() {
+            var message = document.querySelector("#message").value;
+            console.log (message);
+            var selectInput = document.querySelector("#sendToList");
+            var selectedPID = selectInput.options[selectInput.selectedIndex].value;
+            if (selectedPID == "everyone") {
+               client.broadcast (message);
+            } else {
+               client.send (message, [selectedPID]);
+            }
+         }
+
+         function populateUI() {
+            document.querySelector("#sendToList").innerHTML = ""; //clear existing list
+            var option = "<option value='everyone'>Everyone</option>";
+            var optionList = option;
+            for (var count = 0; count < client.peers.length; count++) {
+               option = "<option value='" +client.peers[count]+ "'>" +client.peers[count]+ "</option>";
+               optionList += option;
+            }
+            document.querySelector("#sendToList").innerHTML = optionList;
+         }
+
+      </script>
+   </head>
+   <body onload="startDemo()">
+      <label for="incomingMessages">Received messages:
+         <textarea style="width:550px;height:200px" id="incomingMessages"></textarea>
+      </label>
+      <br/>
+      <label for="sendTo">Send a message to:
+         <select name="sendTo" id="sendToList">
+         </select>
+      </label>
+      <br/>
+      <label for="message">Message:
+         <textarea style="width:550px;height:200px" id="message">Type your message here...</textarea>
+      </label>
+      <br/>
+      <button onclick="sendMessage()">SEND >>></button>
+   </body>
+</html>

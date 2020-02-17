@@ -1,0 +1,48 @@
+{
+  "name": "ws-sessions",
+  "version": "0.4.1",
+  "description": "A JSON-RPC 2.0-compliant WebSocket API server and peer-to-peer messaging / tunneling server.",
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "homepage": "https://github.com/monicanagent/websocketsessions",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/monicanagent/websocketsessions"
+  },
+  "bugs": {
+    "url": "https://github.com/monicanagent/websocketsessions/issues"
+  },
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "doc": "jsdoc . -r -c ./jsdoc.json -d ./docs/",
+    "docs": "jsdoc . -r -c ./jsdoc.json -d ./docs/"
+  },
+  "keywords": [
+    "websocket",
+    "session",
+    "sessions",
+    "server",
+    "api",
+    "services",
+    "p2p",
+    "peer-to-peer",
+    "json-rpc",
+    "jsonrpc",
+    "2.0",
+    "ws",
+    "proxy",
+    "tunnel"
+  ],
+  "author": {
+    "name": "Patrick Bay (Monican Agent)",
+    "url": "https://github.com/monicanagent"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "request": "^2.87.0",
+    "ws": "^5.2.0",
+    "sdb-node": "^0.2.1"
+  }
+}
