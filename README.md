@@ -1,3 +1,5 @@
+<p align="center"><img src="https://user-images.githubusercontent.com/9059336/58511806-90a82a80-8169-11e9-9175-7643effc9b00.png" width="50%" height="50%"></p>
+
 # WebSocket Sessions Server & Client (Browser) Libraries
 
 A Node.js server and accompanying [ECMAScript 2017](https://www.ecma-international.org/ecma-262/8.0/) browser libraries for WebSocket API services and peer-to-peer communications / tunneling.
