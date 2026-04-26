@@ -42,7 +42,7 @@
   "license": "MIT",
   "dependencies": {
     "request": "^2.87.0",
-    "ws": "^7.4.6",
+    "ws": "^7.5.10",
     "sdb-node": "^0.2.1"
   }
 }
